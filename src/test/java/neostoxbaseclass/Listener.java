@@ -1,4 +1,4 @@
-package neostoxbase;
+package neostoxbaseclass;
 
 import java.io.IOException;
 
@@ -6,7 +6,9 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
+import neostoxbaseclass.BaseNew;
 import neostoxpom.UtilityNew;
+
 
 public class Listener extends BaseNew implements ITestListener
 {
@@ -14,15 +16,14 @@ public class Listener extends BaseNew implements ITestListener
 	public void onTestFailure(ITestResult result)
 	
 	{
-		String TCname = result.getName();
-		Reporter.log("TC "+TCname+ " failed plaese try again",true);
+		Reporter.log("TC "+result.getName()+ " is failed",true);
 		try {
-			UtilityNew.screenshot(driver, TCname);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		UtilityNew.screenshot(driver, result.getName());
+		} 
+		catch (IOException e) {
+		e.printStackTrace();
 		}
-	}
+		}
 	
 	
 	public void onTestSuccess(ITestResult result)
@@ -30,7 +31,7 @@ public class Listener extends BaseNew implements ITestListener
 	  Reporter.log("TC "+result.getName()+" sucess...", true);
 	}
 	
-
+	
 	public void onTestSkipped(ITestResult result) 
 	{
 

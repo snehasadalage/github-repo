@@ -1,4 +1,4 @@
-package neostoxtest;
+package neostoxtestclass;
 
 
 import java.io.IOException;
@@ -13,16 +13,18 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import neostoxbase.BaseNew;
-import neostoxpom.NeoStoxHomePage;
-import neostoxpom.NeoStoxPasswordPage;
-import neostoxpom.Neostoxloginpage;
-import neostoxpom.Neostoxsignuppage;
-import neostoxpom.UtilityNew;
+
+import neostoxbaseclass.BaseNew;
+
+import neostoxpomclasses.NeoStoxHomePage;
+import neostoxpomclasses.NeoStoxPasswordPage;
+import neostoxpomclasses.Neostoxloginpage;
+import neostoxpomclasses.Neostoxsignuppage;
+
+import neostoxutility.UtilityNew;
 
 
-
-@Listeners(neostoxbase.Listener.class)
+@Listeners (neostoxbaseclass.Listener.class)
 public class ValidateNeoStoxAccBalance2 extends BaseNew
 {
 	Neostoxloginpage login;
@@ -34,7 +36,7 @@ public class ValidateNeoStoxAccBalance2 extends BaseNew
 	@BeforeClass
 	public void launchNeoStox() throws InterruptedException, IOException
 	{
-	launchBrowser();//form base class
+	launchBrowser();//from base class
 	login= new Neostoxloginpage(driver);
 	password= new NeoStoxPasswordPage(driver);
 	home= new NeoStoxHomePage(driver);
@@ -48,13 +50,17 @@ public class ValidateNeoStoxAccBalance2 extends BaseNew
 	{
 	signIn.clickOnSignInButton(driver);
 	Thread.sleep(1000);
+	
 	login.sendMobileNum(driver, UtilityNew.readdatafreomproperty("mobileno"));
 	login.clickOnSignInButton(driver);
 	UtilityNew.wait(driver, 1000);
+	
 	password.enterPassword(driver, UtilityNew.readdatafreomproperty("password"));
 	Thread.sleep(1000);
+	
 	password.clickOnSubmitButton(driver);
 	Thread.sleep(1000);
+	
 	home.handlePopUp(driver);
 	}
 	
@@ -63,10 +69,10 @@ public class ValidateNeoStoxAccBalance2 extends BaseNew
 	 public void validateAccBalance() throws EncryptedDocumentException, IOException
 	{
 	Assert.assertNotNull(home.getAccBalance(driver),"TC failed Unable to fetch account Balance");
-	Assert.fail();
+	//Assert.fail();
 	}
 	
-	@Test(priority = -1)
+	@Test
 	 public void validateUserID() throws EncryptedDocumentException, IOException
 	{
 	Assert.assertEquals(home.getActualUserName(driver), 
