@@ -11,13 +11,7 @@ import neostoxutility.UtilityNew;
 
 public class NeoStoxHomePage 
 {
-	
-	
-	
-	
-	
-	
-	@FindBy(xpath = "(//a[text()='OK'])[2]") private WebElement okButton;
+@FindBy(xpath = "(//a[text()='OK'])[2]") private WebElement okButton;
 	@FindBy(xpath = "(//a[text()='Close'])[5]") private WebElement closeButton;
 	@FindBy(id="lbl_username") private WebElement userName;
 	@FindBy(id = "lbl_curbalancetop") private WebElement acBalance;
